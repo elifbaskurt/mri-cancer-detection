@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRI Image Analysis</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- CSS dosyasını Flask üzerinden yükleme için -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Modal -->
+    <div id="cancerTypeModal" class="modal">
+        <div class="modal-content">
+            <h2>Select Cancer Type</h2>
+            <p>Please select the type of cancer you want to analyze:</p>
+            <div class="cancer-options">
+                <button class="cancer-type-btn" data-type="brain"><i class="fas fa-brain cancer-icon"></i> Brain</button>
+                <button class="cancer-type-btn" data-type="breast"><i class="fas fa-female cancer-icon"></i> Breast</button>
+                <button class="cancer-type-btn" data-type="cervical"><i class="fas fa-venus cancer-icon"></i> Cervical</button>
+                <button class="cancer-type-btn" data-type="kidney"><i class="fas fa-vial cancer-icon"></i> Kidney</button>
+                <button class="cancer-type-btn" data-type="lungandcolon"><i class="fas fa-lungs cancer-icon"></i> Lung and Colon</button>
+                <button class="cancer-type-btn" data-type="lymph"><i class="fas fa-virus cancer-icon"></i> Lymph</button>
+                <button class="cancer-type-btn" data-type="oral"><i class="fas fa-tooth cancer-icon"></i> Oral</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="language-select-section">
+            <label for="languageSelect"><b>Language:</b></label>
+            <select id="languageSelect" class="language-select">
+                <option value="en">English</option>
+                <option value="tr">Türkçe</option>
+            </select>
+        </div>
+        <div class="model-select-section">
+            <label for="modelSelect"><b>Select Model:</b></label>
+            <select id="modelSelect" class="model-select">
+                <option value="mobilenet">MobileNet</option>
+                <option value="efficinet">EfficiNet</option>
+            </select>
+        </div>
+        <div class="upload-section">
+            <input type="file" id="imageInput" accept=".png,.jpg,.jpeg" class="file-input" hidden>
+            <button id="uploadBtn" class="btn">Upload File</button>
+            <button id="deleteBtn" class="btn" disabled>Delete File</button>
+            <button id="predictBtn" class="btn" disabled>Predict</button>
+        </div>
+
+        <div class="preview-section">
+            <div id="imagePreview" class="image-preview">
+                <p class="placeholder-text">Image Preview</p>
+                <img src="" alt="" id="previewImage">
+            </div>
+        </div>
+
+        <div class="result-section">
+            <textarea id="predictionResult" readonly placeholder="Prediction result will be displayed here..."></textarea>
+        </div>
+    </div>
+    <!-- JavaScript dosyasını Flask üzerinden yüklemek için -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html> 
